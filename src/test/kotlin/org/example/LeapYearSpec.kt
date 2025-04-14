@@ -5,6 +5,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
 import org.junit.jupiter.api.IndicativeSentencesGeneration
 import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -52,6 +53,23 @@ class LeapYearSpec {
         @ValueSource(ints = [1, Int.MAX_VALUE])
         fun if_it_is_positive(year: Int) {
             Assertions.assertThatNoException()
+                .isThrownBy { isALeapYear(year) }
+        }
+    }
+
+    @Nested
+    @IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores::class)
+    inner class A_year_is_not_supported {
+        @Test
+        fun if_it_is_zero() {
+            Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
+                .isThrownBy { isALeapYear(0) }
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [-1, -4, -100, -400, Int.MIN_VALUE])
+        fun if_it_is_negative(year: Int) {
+            Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
                 .isThrownBy { isALeapYear(year) }
         }
     }

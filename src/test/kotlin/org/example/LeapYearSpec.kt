@@ -17,13 +17,13 @@ class LeapYearSpec {
 
         @ParameterizedTest
         @ValueSource(ints = [2004, 1984, 4])
-        fun if_it_is_divisible_by_4_but_not_by_100(year: Int) {
+        fun `if it is divisible by 4 but not by 100`(year: Int) {
             assertThat(isALeapYear(year)).isTrue()
         }
 
         @ParameterizedTest
         @ValueSource(ints = [2000, 1600, 400])
-        fun if_it_is_divisible_by_400(year: Int) {
+        fun `if it is divisible by 400`(year: Int) {
             assertThat(isALeapYear(year)).isTrue()
         }
 
@@ -35,13 +35,13 @@ class LeapYearSpec {
 
         @ParameterizedTest
         @ValueSource(ints = [2022, 2019, 1999, 1])
-        fun if_it_is_not_divisible_by_4(year: Int) {
+        fun `if it is not divisible by 4`(year: Int) {
             assertThat(isALeapYear(year)).isFalse()
         }
 
         @ParameterizedTest
         @ValueSource(ints = [2100, 1900, 100])
-        fun if_it_is_divisible_by_100_but_not_by_400(year: Int) {
+        fun `if it is divisible by 100 but not by 400`(year: Int) {
             assertThat(isALeapYear(year)).isFalse()
         }
     }
@@ -51,7 +51,7 @@ class LeapYearSpec {
     inner class A_year_is_supported {
         @ParameterizedTest
         @ValueSource(ints = [1, Int.MAX_VALUE])
-        fun if_it_is_positive(year: Int) {
+        fun `if it is positive`(year: Int) {
             Assertions.assertThatNoException()
                 .isThrownBy { isALeapYear(year) }
         }
@@ -61,14 +61,14 @@ class LeapYearSpec {
     @IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores::class)
     inner class A_year_is_not_supported {
         @Test
-        fun if_it_is_zero() {
+        fun `if it is zero`() {
             Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
                 .isThrownBy { isALeapYear(0) }
         }
 
         @ParameterizedTest
         @ValueSource(ints = [-1, -4, -100, -400, Int.MIN_VALUE])
-        fun if_it_is_negative(year: Int) {
+        fun `if it is negative`(year: Int) {
             Assertions.assertThatExceptionOfType(IllegalArgumentException::class.java)
                 .isThrownBy { isALeapYear(year) }
         }

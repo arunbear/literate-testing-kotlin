@@ -1,5 +1,6 @@
 package org.example
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
 import org.junit.jupiter.api.IndicativeSentencesGeneration
@@ -41,6 +42,17 @@ class LeapYearSpec {
         @ValueSource(ints = [2100, 1900, 100])
         fun if_it_is_divisible_by_100_but_not_by_400(year: Int) {
             assertThat(isALeapYear(year)).isFalse()
+        }
+    }
+
+    @Nested
+    @IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores::class)
+    inner class A_year_is_supported {
+        @ParameterizedTest
+        @ValueSource(ints = [1, Int.MAX_VALUE])
+        fun if_it_is_positive(year: Int) {
+            Assertions.assertThatNoException()
+                .isThrownBy { isALeapYear(year) }
         }
     }
 

@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "2.1.10"
+    id("com.adarshr.test-logger") version "4.0.0"
 }
 
 group = "org.example"

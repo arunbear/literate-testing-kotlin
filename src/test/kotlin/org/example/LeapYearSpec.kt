@@ -19,6 +19,12 @@ class LeapYearSpec {
             assertThat(isALeapYear(year)).isTrue()
         }
 
+        @ParameterizedTest
+        @ValueSource(ints = [2000, 1600, 400])
+        fun if_it_is_divisible_by_400(year: Int) {
+            assertThat(isALeapYear(year)).isTrue()
+        }
+
     }
 
 }

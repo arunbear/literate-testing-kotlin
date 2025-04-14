@@ -27,4 +27,21 @@ class LeapYearSpec {
 
     }
 
+    @Nested
+    @IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores::class)
+    inner class A_year_is_not_a_leap_year {
+
+        @ParameterizedTest
+        @ValueSource(ints = [2022, 2019, 1999, 1])
+        fun if_it_is_not_divisible_by_4(year: Int) {
+            assertThat(isALeapYear(year)).isFalse()
+        }
+
+        @ParameterizedTest
+        @ValueSource(ints = [2100, 1900, 100])
+        fun if_it_is_divisible_by_100_but_not_by_400(year: Int) {
+            assertThat(isALeapYear(year)).isFalse()
+        }
+    }
+
 }

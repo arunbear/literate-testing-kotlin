@@ -51,4 +51,26 @@ class StackSpec {
         }
 
     }
+
+    @Nested
+    @IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores::class)
+    inner class A_non_empty_stack {
+
+        @Test
+        fun `becomes deeper by retaining a pushed item as its top`() {
+            // given ->
+            val stack = Stack<String>()
+            stack.push("paper")
+
+            val item = "rock"
+
+            // when ->
+            stack.push(item)
+
+            // then ->
+            then(stack.depth()).isEqualTo(2)
+            then(stack.top()).isEqualTo(item)
+        }
+
+    }
 }

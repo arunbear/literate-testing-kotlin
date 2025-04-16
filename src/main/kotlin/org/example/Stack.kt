@@ -1,0 +1,8 @@
+package org.example.org.example
+
+class Stack<T> {
+    fun depth(): Int {
+        return 0
+    }
+
+}

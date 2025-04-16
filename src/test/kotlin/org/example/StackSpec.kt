@@ -39,5 +39,16 @@ class StackSpec {
             }
         }
 
+        @Test
+        fun `acquires depth by retaining a pushed item as its top`() {
+            val stack = Stack<String>()
+            val item = "rock"
+
+            stack.push(item)
+
+            then(stack.depth()).isEqualTo(1)
+            then(stack.top()).isEqualTo(item)
+        }
+
     }
 }

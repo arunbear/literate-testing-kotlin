@@ -2,7 +2,6 @@ package org.example
 
 import org.assertj.core.api.BDDAssertions.then
 import org.assertj.core.api.BDDAssertions.thenExceptionOfType
-import org.example.org.example.Stack
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
 import org.junit.jupiter.api.IndicativeSentencesGeneration
 import org.junit.jupiter.api.Nested
@@ -29,6 +28,14 @@ class StackSpec {
             val stack = Stack<Int>()
             thenExceptionOfType(IllegalStateException::class.java).isThrownBy {
                 stack.top()
+            }
+        }
+
+        @Test
+        fun `throws when popped`() {
+            val stack = Stack<Int>()
+            thenExceptionOfType(IllegalStateException::class.java).isThrownBy {
+                stack.pop()
             }
         }
 

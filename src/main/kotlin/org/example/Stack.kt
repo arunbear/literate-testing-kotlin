@@ -1,4 +1,4 @@
-package org.example.org.example
+package org.example
 
 class Stack<T> {
     fun depth(): Int {
@@ -6,6 +6,10 @@ class Stack<T> {
     }
 
     fun top() {
+        check(depth() > 0)
+    }
+
+    fun pop() {
         check(depth() > 0)
     }
 

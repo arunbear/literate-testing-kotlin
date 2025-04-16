@@ -1,6 +1,8 @@
 package org.example
 
-class Stack<T : Any>(private val items: MutableList<T> = ArrayList()) {
+class Stack<T : Any>() {
+    private val items = mutableListOf<T>()
+
     fun depth(): Int {
         return items.size
     }

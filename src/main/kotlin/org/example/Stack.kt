@@ -5,4 +5,8 @@ class Stack<T> {
         return 0
     }
 
+    fun top() {
+        check(depth() > 0)
+    }
+
 }

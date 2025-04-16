@@ -14,6 +14,7 @@ class Stack<T : Any>() {
 
     fun pop() {
         check(depth() > 0)
+        items.removeLast()
     }
 
     fun push(item: T) {

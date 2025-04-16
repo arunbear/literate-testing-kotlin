@@ -72,5 +72,27 @@ class StackSpec {
             then(stack.top()).isEqualTo(item)
         }
 
+        @Test
+        fun `on popping reveals tops in reverse order of pushing`() {
+            // given ...
+            val stack = Stack<String>()
+            val rock     = "rock"
+            val paper    = "paper"
+            val scissors = "scissors"
+
+            with(stack) {
+                push(rock)
+                push(paper)
+                push(scissors)
+
+                // when ...
+                pop()
+                then(top()).isEqualTo(paper)
+
+                pop()
+                then(top()).isEqualTo(rock)
+            }
+        }
+
     }
 }

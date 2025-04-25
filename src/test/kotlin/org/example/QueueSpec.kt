@@ -104,6 +104,20 @@ class QueueSpec {
                 then(queue.dequeue()). isEqualTo(rock)
             }
 
+            @Test
+            fun becomes_non_full_when_dequeued() {
+                // given ...
+                val queue = Queue<String>(2)
+                queue.enqueue("rock")
+                queue.enqueue("paper")
+
+                // when ...
+                queue.dequeue()
+
+                // then ...
+                then(queue.length()). isLessThan(queue.capacity)
+            }
+
         }
     }
 }

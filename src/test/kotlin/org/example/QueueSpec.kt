@@ -1,6 +1,5 @@
 package org.example
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.BDDAssertions.then
 import org.assertj.core.api.BDDAssertions.thenExceptionOfType
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
@@ -105,7 +104,7 @@ class QueueSpec {
             }
 
             @Test
-            fun becomes_non_full_when_dequeued() {
+            fun `becomes non full when dequeued`() {
                 // given ...
                 val queue = Queue<String>(2)
                 queue.enqueue("rock")
@@ -118,6 +117,37 @@ class QueueSpec {
                 then(queue.length()). isLessThan(queue.capacity)
             }
 
+            @Test
+            fun `dequeues values in order enqueued`() {
+                // given ...
+                val queue = Queue<String>(2)
+                val rock = "rock"
+                val paper = "paper"
+
+                queue.enqueue(rock)
+                queue.enqueue(paper)
+
+                // when / then ...
+                then(queue.dequeue()). isEqualTo(rock)
+                then(queue.dequeue()). isEqualTo(paper)
+            }
+
         }
+
+        @Test
+        fun `dequeues values in order enqueued`() {
+            // given ...
+            val queue = Queue<String>(2)
+            val rock = "rock"
+            val paper = "paper"
+
+            queue.enqueue(rock)
+            queue.enqueue(paper)
+
+            // when / then ...
+            then(queue.dequeue()). isEqualTo(rock)
+            then(queue.dequeue()). isEqualTo(paper)
+        }
+
     }
 }

@@ -13,7 +13,7 @@ class Queue<T: Any> (val capacity: Int) {
 
     fun dequeue() : T? {
         return if (items.isEmpty()) null
-        else items.removeLast()
+        else items.removeFirst()
     }
 
     fun enqueue(item: T) {

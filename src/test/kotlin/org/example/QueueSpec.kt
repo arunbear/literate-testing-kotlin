@@ -40,5 +40,12 @@ class QueueSpec {
             then( queue.dequeue() ) .isNull()
         }
 
+        @Test
+        fun `becomes non empty when value enqueued`() {
+            val queue = Queue<String>(1)
+            queue.enqueue("rock")
+            then(queue.length()). isEqualTo(1)
+        }
+
     }
 }

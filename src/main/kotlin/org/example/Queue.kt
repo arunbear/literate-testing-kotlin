@@ -1,6 +1,6 @@
 package org.example
 
-class Queue(capacity: Int) {
+class Queue(val capacity: Int) {
     fun length(): Int {
         return 0
     }

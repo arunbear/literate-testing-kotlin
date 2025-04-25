@@ -16,6 +16,13 @@ class QueueSpec {
             val queue = Queue(1)
             then(queue.length()).isZero()
         }
+
+        @Test
+        fun `preserves positive bounding capacity`() {
+            val capacity = 3
+            val queue = Queue(capacity)
+            then(queue.capacity). isEqualTo(capacity)
+        }
     }
 
 }

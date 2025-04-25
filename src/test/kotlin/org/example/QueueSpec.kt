@@ -1,6 +1,5 @@
 package org.example
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.BDDAssertions.then
 import org.assertj.core.api.BDDAssertions.thenExceptionOfType
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
@@ -69,6 +68,19 @@ class QueueSpec {
 
                 // then ...
                 then(queue.length()). isGreaterThan(lengthBefore)
+            }
+
+            @Test
+            fun `becomes full when enqueued up to capacity`() {
+                // given ...
+                val queue = Queue<String>(2)
+                queue.enqueue("rock")
+
+                // when ...
+                queue.enqueue("paper")
+
+                // then ...
+                then(queue.length()). isEqualTo(queue.capacity)
             }
 
         }

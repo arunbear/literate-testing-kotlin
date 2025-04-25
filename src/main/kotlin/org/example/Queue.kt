@@ -12,11 +12,14 @@ class Queue<T: Any> (val capacity: Int) {
     }
 
     fun dequeue() : T? {
-        return null
+        return if (items.isEmpty()) null
+        else items.removeLast()
     }
 
     fun enqueue(item: T) {
-        items.add(item)
+        if (items.size < capacity) {
+            items.add(item)
+        }
     }
 
 }

@@ -149,5 +149,19 @@ class QueueSpec {
             then(queue.dequeue()). isEqualTo(paper)
         }
 
+        @Test
+        fun `becomes shorter when dequeued`() {
+            // given ...
+            val queue = Queue<String>(1)
+
+            queue.enqueue("rock")
+            val lengthBefore = queue.length()
+
+            // when ...
+            queue.dequeue()
+
+            then(queue.length()).isLessThan(lengthBefore)
+        }
+
     }
 }

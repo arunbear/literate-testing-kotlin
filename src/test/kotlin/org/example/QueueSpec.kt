@@ -1,5 +1,6 @@
 package org.example
 
+import org.assertj.core.api.Assertions
 import org.assertj.core.api.BDDAssertions.then
 import org.assertj.core.api.BDDAssertions.thenExceptionOfType
 import org.junit.jupiter.api.DisplayNameGenerator.ReplaceUnderscores
@@ -47,5 +48,29 @@ class QueueSpec {
             then(queue.length()). isEqualTo(1)
         }
 
+    }
+
+    @Nested
+    @IndicativeSentencesGeneration(separator = " -> ", generator = ReplaceUnderscores::class)
+    inner class A_non_empty_queue {
+
+        @Nested
+        inner class that_is_not_full {
+
+            @Test
+            fun `becomes longer when a value is enqueued`() {
+                // given ...
+                val queue = Queue<String>(2)
+                queue.enqueue("rock")
+                val lengthBefore = queue.length()
+
+                // when ...
+                queue.enqueue("paper")
+
+                // then ...
+                then(queue.length()). isGreaterThan(lengthBefore)
+            }
+
+        }
     }
 }
